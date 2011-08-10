@@ -6,6 +6,10 @@
 
 	$registration = 0;
 
+	//Have the default include for this page with no parameters passed
+	$include = "includes/registrationForm.php";
+	$heading = "Registration";
+
 	$memberTools = new memberTools();
 	
 	if (isset($_POST['submit'])) {
@@ -20,6 +24,8 @@
 		
 			//Member succesfully created
 			$registration = 2;
+			$content = "<p>Registration was sucessfull please <a href='login.php'>login here</a>.</p>";
+			$include = NULL;
 
 		}
 
@@ -27,67 +33,12 @@
 		
 			//Registration details did not comply to rules 
 			$registration = 1;
+			$content = "<p><strong>An error was found with your registration form!</strong><p>";
+			$include = "includes/registrationForm.php";
 
 		}
 	}
 
+	require_once("includes/template.inc.php");
+
 ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title><?php echo("Mantis Market : ".$pageContent['title']); ?></title>
-		<link href="../stylesheet/stylesheet.css" rel="stylesheet" type="text/css" />
-	</head>
-	<body>
-		<div id="mainContainer">
-			<div id="title">
-				<?php 
-					require_once("../includes/title.inc.php"); 
-				?>
-			</div>
-			<div class='links'>
-				<?php 
-					require_once("../includes/links.inc.php"); 
-				?>
-			</div>
-			<div id="body">
-
-			<?php
-
-				if ($registration == 0) {
-
-					require_once("includes/registrationForm.php");
-
-				}
-		
-				else if ($registration == 1) {
-
-					echo("<p><strong>An error was found with your registration form!</strong><p>");
-
-					require_once("includes/registrationForm.php");
-
-				}
-
-				else if ($registration == 2) {
-
-					echo("<p>Registration was sucessfull please <a href='login.php'>login here</a>.</p>");
-
-				}
-
-			?>
-	
-			</div>
-			<div id="footer">
-				<?php 
-					require_once("../includes/footer.inc.php"); 
-				?>
-			</div>
-		</div>
-	</body>
-</html>
-
-
-
