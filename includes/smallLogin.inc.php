@@ -1,4 +1,4 @@
-<form action="<?php echo($fullPath); ?>/membership/login.php" name="login" id='login' method="post">
+<form action="<?php echo($directoryPath); ?>/membership/login.php" name="login" id='login' method="post">
 <table>
 	<tr>
 		<td width='70' align='right'><strong>Username</strong></td>
@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<td></td>
-		<td><input type="submit" name="submit" id="submit" value="Login" /><strong> or <a href='<?php echo($fullPath); ?>/membership/register.php'>Register</a></strong></td>
+		<td><input type="submit" name="submit" id="submit" value="Login" /><strong> or <a href='<?php echo($directoryPath); ?>/membership/register.php'>Register</a></strong></td>
 	</tr>
 </table>
 <br />
