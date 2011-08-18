@@ -11,44 +11,50 @@
 		<div id="mainContainer">
 			<div id="title">
 				<?php 
-					require_once($fullPath."/includes/title.inc.php"); 
+					require_once("../includes/title.inc.php"); 
 				?>
 			</div>
-			<div class='links'>
+			<div id='navBar'>
 				<?php 
-					require_once($fullPath."/includes/links.inc.php"); 
+					require_once("../includes/links.inc.php"); 
 				?>
 			</div>
-			<div class="memberLinks">
-				<?php
-					require_once($fullPath."/membership/includes/memberLinks.inc.php");
-				?>
-			</div>
-			<div class="memberBody">
+			<div id='bodyContainer'>
+
+				<div class="memberLinks">
+					<?php
+						require_once("includes/memberLinks.inc.php");
+					?>
+				</div>
+			
+				<div class="memberBody">
 		
-				<?php
+			  <?php
 
 					echo("<h1>".$heading."</h1>");
-	        
+
 					if (isset($content)) {
-						
+
 						echo($content);
 
 					}
 
-					if (isset($include)) {
+          if (isset($include)) {
 
 						include($include);
 
 					}
-        
-				?>
 
+        ?>
+
+				
+				</div>
 
 			</div>
+
 			<div id="footer">
 				<?php 
-					require_once($fullPath."/includes/footer.inc.php"); 
+					require_once("../includes/footer.inc.php"); 
 				?>
 			</div>
 		</div>
