@@ -33,6 +33,6 @@
 	$heading = "Member Login";
 	$include = "includes/login.inc.php";
 
-	require_once("includes/template.inc.php");
+	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
 			
 ?>

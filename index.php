@@ -10,6 +10,6 @@
 	$heading = "Members Area";
 	$content = unserialize($_SESSION['member'])->getUsername();
 
-	require_once("includes/template.inc.php");
+	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
 
 ?>

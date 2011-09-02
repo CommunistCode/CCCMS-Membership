@@ -39,6 +39,6 @@
 		}
 	}
 
-	require_once("includes/template.inc.php");
+	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
 
 ?>
