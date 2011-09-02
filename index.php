@@ -8,7 +8,8 @@
 	$memberTools = new memberTools();
 
 	$heading = "Members Area";
-	$content = unserialize($_SESSION['member'])->getUsername();
+	$allContent = $pageTools->getDynamicContent($pageTools->getPageIDbyDirectLink("membership/index.php"));
+	$content = $allContent['text'];
 
 	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
 
