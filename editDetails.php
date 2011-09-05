@@ -22,6 +22,20 @@
 
 	}
 
+	if (isset($_POST['changePassword'])) {
+
+		if ($memberTools->checkPassword($_POST['currentPassword'],$_POST['newPass'],$_POST['confirmPass'])) {
+
+			$content = "<font color='green'>Password Updated!</font>";
+
+		} else {
+
+			$content = "<font color='red'>Password could not be updated!</font>";
+
+		}
+
+	}
+
 	$heading = "Update Details";
 	$include = "includes/editDetails.inc.php";
 

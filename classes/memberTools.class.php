@@ -5,6 +5,27 @@
 	
 	class memberTools {
 
+		public function checkPassword($currentPassword,$newPass,$newPassConfirm) {
+
+			if (!strcmp($newPass,$newPassConfirm)) {
+
+				$member = unserialize($_SESSION['member']);
+
+				if ($this->login($member->getUsername(),$currentPassword)) {
+
+					$member->updatePassword(md5($newPass));
+					return true;
+
+				}
+
+			} else {
+
+				return false;
+
+			}
+
+		}
+		
 		public function login($username, $password) {
 
 			$db = new dbConn();

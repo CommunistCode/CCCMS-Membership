@@ -79,6 +79,22 @@ class member {
 		}
 
 	}
+
+	public function updatePassword($password) {
+
+		$db = new dbConn();
+
+		if ($db->update("members","password='".$password."'","memberID=".$this->id."",0)) {
+
+			return 1;
+
+		} else {
+
+			return 0;
+
+		}
+
+	}
 }
 
 ?>

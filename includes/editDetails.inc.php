@@ -13,4 +13,25 @@
 			<td><input type='submit' name='updateDetailsSubmit' value='Update Details' /></td>
 		</tr>
 	</table>
+
+	<h2>Change Password</h2>
+
+	<table>
+		<tr>
+			<td width='200'>Current Password</td>
+			<td><input type='text' name='currentPassword' /></td>
+		</tr>
+		<tr>
+			<td>New Password</td>
+			<td><input type='text' name='newPass' /></td>
+		</tr>
+		<tr>
+			<td>Confirm Password</td>
+			<td><input type='text' name='confirmPass' /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type='submit' name='changePassword' value='Change Password' /></td>
+		</tr>
+	</table>
 </form>
