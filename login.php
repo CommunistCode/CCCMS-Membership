@@ -28,7 +28,7 @@
 
 	}
 
-	$content .= "<br /><br />";
+	$content .= "<br />";
 
 	$heading = "Member Login";
 	$include = "includes/login.inc.php";
