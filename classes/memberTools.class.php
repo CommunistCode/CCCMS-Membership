@@ -117,6 +117,8 @@
 
 			$result = $db->select("DISTINCT category","memberLinks",0);
 
+			echo("<ul>");
+
 			while ($row = $result->fetch_assoc()) {
 
 				echo("<li><strong>".$row['category']."</strong></li>");
@@ -131,6 +133,8 @@
 				}
 
 			}
+
+			echo("</ul>");
 
 		}
 
