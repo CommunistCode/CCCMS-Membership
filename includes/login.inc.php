@@ -1,4 +1,4 @@
-<form action="login.php" name="login" id='login' method="post">
+<form action="login.php" id='login' method="post">
   <table>
     <tr>
       <td width='100'><p>Username</p></td>
