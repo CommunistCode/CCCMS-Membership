@@ -6,7 +6,7 @@
 	class memberTools {
 
 		
-		function generatePassword ($length = 8) {
+		function generatePassword($length = 8) {
 
 			$password = "";
 

@@ -1,30 +1,35 @@
 <br />
 <p>Please fill in the form below to register at Mantis Market.</p>
 <br />
-<form action="register.php" name="login" id='login' method="post">
-	<table>
+<form action="register.php" name="login" method="post">
+	<table class='registrationForm'>
 		<tr>
-			<td width='150'>Username</td>
-			<td><input type="text" name="username" id="username" /></td>
+			<th>Username</th>
+			<td><input type="text" name="username" /></td>
 		</tr>
 		<tr>
-			<td>Password</td>
-			<td><input type="password" name="password" id="password" /></td>
+			<th>Password</th>
+			<td><input type="password" name="password" /></td>
 		</tr>
 		<tr>
-			<td>Confirm Password</td>
-			<td><input type="password" name="confirmPassword" id="confirmPassword" /></td>
+			<th>Confirm Password</th>
+			<td><input type="password" name="confirmPassword" /></td>
 		</tr>
 		<tr>
-			<td>Email</td>
-			<td><input type="text" name="email" id="email" /></td>
+			<th>Email</th>
+			<td><input type="text" name="email" /></td>
 		</tr>
 		<tr>
-			<td>Location</td>
-			<td><input type="text" name="location" id="location" /></td>
+			<th>Town/City</th>
+			<td><input type="text" name="town" /></td>
+		</tr>
+		<tr>
+			<th>Country</th>
+			<td><?php include("includes/countryList.inc.php"); ?></td>
+		</tr>
 		<tr>
 			<td></td>
-			<td><input type="submit" name="submit" id="submit" value="Register" /></td>
+			<td><input type="submit" name="submit" value="Register" /></td>
 		</tr>
 	</table>
 	<br />

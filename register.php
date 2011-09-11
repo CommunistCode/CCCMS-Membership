@@ -20,7 +20,9 @@
 
 		if ($checkUsername AND $checkEmail AND $checkPassword == 0) {
 
-			$memberTools->createMember($_POST['username'],md5($_POST['password']),$_POST['email'],$_POST['location']);
+			$location = trim($_POST['town']) .", ".$_POST['country'];
+
+			$memberTools->createMember($_POST['username'],md5($_POST['password']),$_POST['email'],$location);
 		
 			//Member succesfully created
 			$registration = 2;

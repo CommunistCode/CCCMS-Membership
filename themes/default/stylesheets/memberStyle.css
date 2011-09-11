@@ -1,3 +1,18 @@
+.registrationForm th {
+	width: 150px;
+	text-align: left;
+	font-weight: normal;
+	font-size: 14px;
+	padding: 5px;
+	margin: 0px;
+	background: #EDEDED;
+	
+}
+
+.registrationForm td {
+padding: 1px 0px 0px 10px;
+}
+
 .memberBody {
 	float: right;	
 	width: 740px;
