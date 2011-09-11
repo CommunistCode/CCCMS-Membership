@@ -16,4 +16,4 @@
   <br />
 </form>
 
-<p>Not yet registered? <a href='register.php'>Signup Here!</a></p>
+<p><a href='forgottenPassword.php'>Forgotten Password</a> or not yet registered? <a href='register.php'>Signup Here!</a></p>

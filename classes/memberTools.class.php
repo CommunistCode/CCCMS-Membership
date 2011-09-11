@@ -5,6 +5,78 @@
 	
 	class memberTools {
 
+		
+		function generatePassword ($length = 8) {
+
+			$password = "";
+
+			$possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
+
+			$maxlength = strlen($possible);
+											  
+			if ($length > $maxlength) {
+			  $length = $maxlength;
+			}
+														
+			$i = 0; 
+															    
+			while ($i < $length) { 
+
+				$char = substr($possible, mt_rand(0, $maxlength-1), 1);
+																					        
+				if (!strstr($password, $char)) { 
+					$password .= $char;
+			    $i++;
+			
+				}
+
+			}
+
+		  return $password;
+
+		}
+		
+		public function sendNewDetails($email) {
+
+			$db = new dbConn();
+
+			$result = $db->selectWhere("username","members","email='".$email."'");
+
+			if ($data = $result->fetch_assoc()) {
+
+				$newPassword = $this->generatePassword(8);
+
+				$message = "Your MantisMarket password has been reset, please find your new details below:\n\nUsername: ".$data['username']."\nPassword: ".$newPassword."\n\nThank you for using MantisMarket.";
+
+				$to = $data['username'] ."<". $email .">";
+  	    $subject = "MantisMarket: Password Reset";
+    	  $message = wordwrap($message,70);
+      	$headers = 'From: MantisMarket Admin <no-reply@mantismarket.co.uk>'."\r\n";
+
+				if (mail($to,$subject,$message,$headers)) {
+
+					$hashedPassword = MD5($newPassword);
+
+					if ($db->update("members","password='".$hashedPassword."'","email='".$email."'")) {
+
+						return 1;
+
+					} else {
+
+						return 0;
+
+					}
+
+				} else {
+
+					return 0;
+
+				}
+
+			}
+
+		}
+		
 		public function checkPassword($currentPassword,$newPass,$newPassConfirm) {
 
 			if (!strcmp($newPass,$newPassConfirm)) {
