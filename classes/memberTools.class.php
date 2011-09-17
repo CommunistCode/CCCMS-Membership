@@ -51,7 +51,16 @@
 				$to = $data['username'] ."<". $email .">";
   	    $subject = "MantisMarket: Password Reset";
     	  $message = wordwrap($message,70);
-      	$headers = 'From: MantisMarket Admin <no-reply@mantismarket.co.uk>'."\r\n";
+
+				$headers  = 'From: MantisMarket Admin <no-reply@mantismarket.co.uk>'."\r\n";
+				$headers .= 'Reply-To: MantisMarket Admin <no-reply@mantismarket.co.uk>'."\r\n";
+				$headers .= 'Return-Path: MantisMarket Admin <no-reply@mantismarket.co.uk>'."\r\n";
+
+				$headers .= 'Organization: MantisMarket'."\r\n";
+				$headers .= 'MIME-Version: 1.0'."\r\n";
+				$headers .= 'Content-type: text/plain; charset=iso-8859-1'."\r\n";
+				$headers .= 'X-Priority: 3'."\r\n";
+				$headers .= 'X-Mailer: PHP'. phpversion() ."\r\n";
 
 				if (mail($to,$subject,$message,$headers)) {
 
