@@ -38,6 +38,10 @@
 		
 		public function sendNewDetails($email) {
 
+			require_once("Mail.php");
+		
+			ini_set('display_errors',0);
+
 			$db = new dbConn();
 
 			$result = $db->selectWhere("username","members","email='".$email."'");
@@ -52,17 +56,26 @@
   	    $subject = "MantisMarket: Password Reset";
     	  $message = wordwrap($message,70);
 
-				$headers  = 'From: MantisMarket Admin <no-reply@mantismarket.co.uk>'."\r\n";
-				$headers .= 'Reply-To: MantisMarket Admin <no-reply@mantismarket.co.uk>'."\r\n";
-				$headers .= 'Return-Path: MantisMarket Admin <no-reply@mantismarket.co.uk>'."\r\n";
+				$from = "MantisMarket Admin <no-reply@mantismarket.co.uk>";				
+				
+				$headers = array ('From' => $from,
+						'To' => $to,
+						'Subject' => $subject);
 
-				$headers .= 'Organization: MantisMarket'."\r\n";
-				$headers .= 'MIME-Version: 1.0'."\r\n";
-				$headers .= 'Content-type: text/plain; charset=iso-8859-1'."\r\n";
-				$headers .= 'X-Priority: 3'."\r\n";
-				$headers .= 'X-Mailer: PHP'. phpversion() ."\r\n";
+				$host = "ssl://mail.mantismarket.co.uk";
+				$port = "465";
+				$username = "all@mantismarket.co.uk";
+				$password = "mitchell";
 
-				if (mail($to,$subject,$message,$headers)) {
+				$smtp = Mail::factory('smtp',array('host' => $host,
+							'port' => $port,
+							'auth' => true,
+							'username' => $username,
+							'password' => $password));
+				
+				$mail = $smtp->send($to,$headers,$message);
+
+				if (!PEAR::isError($mail)) {
 
 					$hashedPassword = MD5($newPassword);
 
