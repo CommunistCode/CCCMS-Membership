@@ -18,7 +18,7 @@
 		$checkEmail = $memberTools->checkEmail($_POST['email']);
 		$checkPassword = strcmp($_POST['password'],$_POST['confirmPassword']);
 
-		if ($checkUsername AND $checkEmail AND $checkPassword == 0) {
+		if ($checkUsername AND $checkEmail AND $checkPassword == 0 AND isset($_POST['tandc'])) {
 
 			$location = trim($_POST['town']) .", ".$_POST['country'];
 

@@ -29,6 +29,9 @@
 		</tr>
 		<tr>
 			<td></td>
+			<td><p><input type='checkbox' name='tandc' />By clicking here you agree to our <a href='includes/termsAndConditions.txt'>terms and conditions</a></p></td>
+		<tr>
+			<td></td>
 			<td><input type="submit" name="submit" value="Register" /></td>
 		</tr>
 	</table>
