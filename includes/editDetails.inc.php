@@ -1,5 +1,5 @@
 <form method='post' action='editDetails.php'>
-	<table>
+	<table class='editDetails'>
 		<tr>
 			<th width='150'>Location</th>
 			<td><input type='text' name='location' value='<?php echo($member->getLocation()); ?>' /></td>
@@ -16,7 +16,7 @@
 
 	<h2>Change Password</h2>
 
-	<table>
+	<table class='editDetails'>
 		<tr>
 			<th width='200'>Current Password</th>
 			<td><input type='text' name='currentPassword' /></td>
