@@ -232,6 +232,18 @@
 
 		}
 
+		public function getUsername($id) {
+			
+			$db = new dbConn();
+
+			$result = $db->selectWhere("username","members","memberID=".$id);
+
+			$data = $result->fetch_array();
+
+			return $data['username'];
+
+		}
+
 	}
 
 ?>
