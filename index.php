@@ -9,7 +9,7 @@
 
 	$heading = "Members Area";
 	$allContent = $pageTools->getDynamicContent($pageTools->getPageIDbyDirectLink("membership/index.php"));
-	$content = "<p>".$allContent['text']."</p>";
+	$content = $allContent['text'];
 
 	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
 
