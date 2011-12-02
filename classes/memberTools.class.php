@@ -5,6 +5,17 @@
 	
 	class memberTools {
 
+		public function getUsername($id) {
+
+			$db = new dbConn();
+
+			$result = $db->selectWhere("username","members","memberID=".$id);
+
+			$data = $result->fetch_assoc();
+
+			return $data['username'];
+
+		}
 		
 		function generatePassword($length = 8) {
 
@@ -205,30 +216,34 @@
 		
 		}
 
-		public function renderLinks() {
+		public function getSidebarLinks() {
 
 			$db = new dbConn();
 
+			$linkArray = array();
+
 			$result = $db->select("DISTINCT category","memberLinks",0);
 
-			echo("<ul>");
+			for ($i=0; $i<$result->num_rows; $i++) {
 
-			while ($row = $result->fetch_assoc()) {
+				$categoryRow = $result->fetch_assoc();
 
-				echo("<li><strong>".$row['category']."</strong></li>");
+				$linkArray[$i]['categoryName'] = $categoryRow['category'];
 
-				$subResult = $db->selectWhere("linkName,destination","memberLinks","category='".$row['category']."'",0);
+				$subResult = $db->selectWhere("linkName,destination","memberLinks","category='".$categoryRow['category']."'",0);
 
-				while ($subRow = $subResult->fetch_assoc()) {
+				for ($iSub=0; $iSub<$subResult->num_rows; $iSub++) {
 
-					echo("<li><a href='".$subRow['destination']."'>".$subRow['linkName']."</a></li>");
+					$subRow = $subResult->fetch_assoc();
 
+					$linkArray[$i][$iSub]['url'] = $subRow['destination'];
+					$linkArray[$i][$iSub]['anchor'] = $subRow['linkName'];
 	
 				}
 
 			}
 
-			echo("</ul>");
+			return $linkArray;
 
 		}
 
