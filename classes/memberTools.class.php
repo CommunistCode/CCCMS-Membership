@@ -5,18 +5,6 @@
 	
 	class memberTools {
 
-		public function getUsername($id) {
-
-			$db = new dbConn();
-
-			$result = $db->selectWhere("username","members","memberID=".$id);
-
-			$data = $result->fetch_assoc();
-
-			return $data['username'];
-
-		}
-		
 		function generatePassword($length = 8) {
 
 			$password = "";
