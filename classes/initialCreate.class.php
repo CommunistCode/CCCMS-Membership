@@ -70,8 +70,8 @@
 
 				if ($db->insert(
 							"version",
-							"module,version",
-							"'membership','1.0.0'",
+							"module,version,theme",
+							"'membership','1.0.0','default'",
 							0)
 				) {
 
