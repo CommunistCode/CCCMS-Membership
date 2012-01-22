@@ -1,9 +1,18 @@
 <?php
 
 	require_once($fullPath . "/classes/dbConn.class.php");
+	require_once($fullPath . "/classes/pdoConn.class.php");
 	require_once($fullPath . "/membership/classes/member.class.php");
 	
 	class memberTools {
+
+    private $pdoConn;
+
+    function __construct() {
+
+      $this->pdoConn = new pdoConn();
+
+    }
 
 		function generatePassword($length = 8) {
 
@@ -38,14 +47,21 @@
 		public function sendNewDetails($email) {
 
 			require_once("Mail.php");
-		
-			ini_set('display_errors',0);
+			
+      ini_set('display_errors',0);
 
-			$db = new dbConn();
+      $field = "username";
+      $table = "members";
+      
+      $where[0]['column'] = "email";
+      $where[0]['operator'] = "=";
+      $where[0]['value'] = $email;
 
-			$result = $db->selectWhere("username","members","email='".$email."'");
+			$result = $this->pdoConn->select($field,$table,$where);
 
-			if ($data = $result->fetch_assoc()) {
+      $data = array_shift($result);
+
+			if ($data) {
 
 				$newPassword = $this->generatePassword(8);
 
@@ -78,13 +94,23 @@
 
 					$hashedPassword = MD5($newPassword);
 
-					if ($db->update("members","password='".$hashedPassword."'","email='".$email."'")) {
+          $table = "members";
+          
+          $set[0]['column'] = "password";
+          $set[0]['value'] = $hashedPassword;
 
-						return 1;
+          $where[0]['column'] = "email";
+          $where[0]['value'] = $email;
+
+					$updateResult = $this->pdoConn->update($table,$set,$where);
+          
+          if ($updateResult['error']) {
+
+						return 0;
 
 					} else {
 
-						return 0;
+						return 1;
 
 					}
 
@@ -121,14 +147,22 @@
 		
 		public function login($username, $password) {
 
-			$db = new dbConn();
-
 			$hashedPassword = md5($password);
-			$result = $db->selectWhere("memberID,username,password","members","username='".$username."' AND password='".$hashedPassword."'",0);
 
-			if($result->num_rows == 1) {
+      $fields = array("memberID","username","password");
+      $table = "members";
 
-				$_SESSION['member'] = serialize(new member($result->fetch_array(MYSQLI_ASSOC)));
+      $where[0]['column'] = "username";
+      $where[0]['value'] = $username;
+
+      $where[1]['column'] = "password";
+      $where[1]['value'] = $hashedPassword;
+
+			$result = $this->pdoConn->select($fields,$table,$where);
+			
+      if(count($result) == 1) {
+
+				$_SESSION['member'] = serialize(new member($result[0]));
 				$_SESSION['memberLoggedIn'] = 1;
 				return true;
 
@@ -186,11 +220,15 @@
 
 		public function checkUsername($username) {
 
-			$db = new dbConn();
+      $field = "username";
+      $table = "members";
 
-			$result = $db->selectWhere("username","members","username='".$username."'",0);
+      $where[0]['column'] = "username";
+      $where[0]['value'] = $username;
 
-			if ($result->num_rows == 1) {
+			$result = $this->pdoConn->select($field,$table,$where);
+
+			if (count($result) == 1) {
 
 				return false;
 				
@@ -206,28 +244,39 @@
 
 		public function getSidebarLinks() {
 
-			$db = new dbConn();
-
 			$linkArray = array();
 
-			$result = $db->select("DISTINCT category","memberLinks",0);
+      $field = "DISTINCT category";
+      $table = "memberLinks";
 
-			for ($i=0; $i<$result->num_rows; $i++) {
+			$result = $this->pdoConn->select($field,$table);
+      
+      $i = 0;
 
-				$categoryRow = $result->fetch_assoc();
+      foreach($result as $categoryRow) {
 
 				$linkArray[$i]['categoryName'] = $categoryRow['category'];
 
-				$subResult = $db->selectWhere("linkName,destination","memberLinks","category='".$categoryRow['category']."'",0);
+        $fields = array("linkName","destination");
+        $table = "memberLinks";
 
-				for ($iSub=0; $iSub<$subResult->num_rows; $iSub++) {
+        $where[0]['column'] = "category";
+        $where[0]['value'] = $categoryRow['category'];
 
-					$subRow = $subResult->fetch_assoc();
+				$subResult = $this->pdoConn->select($fields,$table,$where);
+
+        $iSub = 0;
+
+        foreach($subResult as $subRow) {
 
 					$linkArray[$i][$iSub]['url'] = $subRow['destination'];
 					$linkArray[$i][$iSub]['anchor'] = $subRow['linkName'];
+ 
+          $iSub++;
 	
 				}
+
+        $i++;
 
 			}
 
@@ -237,13 +286,15 @@
 
 		public function getUsername($id) {
 			
-			$db = new dbConn();
+      $field = "username";
+      $table = "members";
 
-			$result = $db->selectWhere("username","members","memberID=".$id);
+      $where[0]['column'] = "memberID";
+      $where[0]['value'] = $id;
 
-			$data = $result->fetch_array();
+			$result = $this->pdoConn->select($field,$table,$where);
 
-			return $data['username'];
+			return $result[0]['username'];
 
 		}
 
