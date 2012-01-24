@@ -294,8 +294,8 @@
 
 			$result = $this->pdoConn->select($field,$table,$where);
 
-			return $result[0]['username'];
-
+      return ($result[0]['username']);
+			
 		}
 
 	}
