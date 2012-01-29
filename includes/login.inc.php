@@ -4,6 +4,10 @@
       <td width='100'><p>Username</p></td>
       <td><input type="text" name="username" id="username" /></td>
     </tr>
+    <tr class='spacer'>
+      <td></td>
+      <td></td>
+    </tr>
     <tr>
       <td><p>Password</p></td>
       <td><input type="password" name="password" id="password" /></td>
