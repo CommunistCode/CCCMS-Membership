@@ -15,11 +15,11 @@
 
 			if ($firstRun ) {
 				
-				echo("<div class='memberLinkHeadingTopDiv'>".$categoryName."</div>");
+				echo("<div class='linkHeader linkHeaderTop'>".$categoryName."</div>");
 
 			} else {
 
-				echo("<div class='memberLinkHeading'>".$categoryName."</div>");
+				echo("<div class='linkHeader'>".$categoryName."</div>");
 
 			}
 
