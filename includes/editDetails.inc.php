@@ -19,15 +19,15 @@
 	<table class='editDetails'>
 		<tr>
 			<th width='200'>Current Password</th>
-			<td><input type='text' name='currentPassword' /></td>
+			<td><input type='password' name='currentPassword' /></td>
 		</tr>
 		<tr>
 			<th>New Password</th>
-			<td><input type='text' name='newPass' /></td>
+			<td><input type='password' name='newPass' /></td>
 		</tr>
 		<tr>
 			<th>Confirm Password</th>
-			<td><input type='text' name='confirmPass' /></td>
+			<td><input type='password' name='confirmPass' /></td>
 		</tr>
 		<tr>
 			<td></td>
