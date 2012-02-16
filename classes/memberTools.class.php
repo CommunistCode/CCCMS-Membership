@@ -1,8 +1,8 @@
 <?php
 
-	require_once($fullPath . "/classes/dbConn.class.php");
-	require_once($fullPath . "/classes/pdoConn.class.php");
-	require_once($fullPath . "/membership/classes/member.class.php");
+	require_once($GLOBALS['fullPath'] . "/classes/dbConn.class.php");
+	require_once($GLOBALS['fullPath'] . "/classes/pdoConn.class.php");
+	require_once($GLOBALS['fullPath'] . "/membership/classes/member.class.php");
 	
 	class memberTools {
 
