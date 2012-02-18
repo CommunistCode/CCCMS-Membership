@@ -1,11 +1,11 @@
 <br />
-<p>Please fill in the form below to register at Mantis Market.</p>
+<p>Please fill in the form below to register at PimpMyPi.</p>
 <br />
 <form action="register.php" name="login" method="post">
 	<table class='registrationForm'>
 		<tr>
 			<th>Username</th>
-			<td><input type="text" name="username" /></td>
+  		<td><input type="text" name="username" maxlength=16 /></td>
 		</tr>
 		<tr>
 			<th>Password</th>
@@ -27,10 +27,11 @@
 			<th>Country</th>
 			<td><?php include("includes/countryList.inc.php"); ?></td>
 		</tr>
-		<tr>
+<!--		<tr>
 			<td></td>
 			<td><p><input type='checkbox' name='tandc' />By clicking here you agree to our <a href='includes/termsAndConditions.txt'>terms and conditions</a></p></td>
-		<tr>
+		</tr> -->
+    <tr>
 			<td></td>
 			<td><input type="submit" name="submit" value="Register" /></td>
 		</tr>
