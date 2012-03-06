@@ -1,10 +1,8 @@
 <?php 
 
-	require_once("../config/config.php");
-	require_once("../includes/global.inc.php");
-	require_once("classes/memberTools.class.php");
+	require_once("includes/memberGlobal.inc.php");
 
-	$memberTools = new memberTools();
+  $content = "";
 
 	if (isset($_POST['submit'])) {
 
@@ -30,9 +28,12 @@
 
 	$content .= "<br />";
 
-	$heading = "Member Login";
 	$include = "includes/login.inc.php";
 
-	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
-			
+  $page->set("title","Member Login");
+  $page->set("heading","Member Login");
+  $page->addContent($content);
+  $page->addInclude("includes/login.inc.php");
+  $page->render("corePage.inc.php");  
+
 ?>

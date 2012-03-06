@@ -1,17 +1,12 @@
 <?php 
 
-	require_once("../config/config.php");
-	require_once("../includes/global.inc.php");
-	require_once("classes/memberTools.class.php");
+	require_once("includes/memberGlobal.inc.php");
+
+  $page->set("title","Registration");
+  $page->set("heading","Registration");
 
 	$registration = 0;
 
-	//Have the default include for this page with no parameters passed
-	$include = "includes/registrationForm.php";
-	$heading = "Registration";
-
-	$memberTools = new memberTools();
-	
 	if (isset($_POST['submit'])) {
 
 		$checkUsername = $memberTools->checkUsername($_POST['username']);
@@ -26,8 +21,7 @@
 		
 			//Member succesfully created
 			$registration = 2;
-			$content = "<p>Registration was sucessfull please <a href='login.php'>login here</a>.</p>";
-			$include = NULL;
+			$page->addContent("<p>Registration was sucessfull please <a href='login.php'>login here</a>.</p>");
 
 		}
 
@@ -35,12 +29,17 @@
 		
 			//Registration details did not comply to rules 
 			$registration = 1;
-			$content = "<p><strong>An error was found with your registration form!</strong><p>";
-			$include = "includes/registrationForm.php";
+			$page->addContent("<p><strong>An error was found with your registration form!</strong><p>");
+			$page->addInclude("includes/registrationForm.php");
 
 		}
-	}
 
-	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
+	} else {
+
+	  $page->addInclude("includes/registrationForm.php");
+
+  }
+
+  $page->render("corePage.inc.php");
 
 ?>

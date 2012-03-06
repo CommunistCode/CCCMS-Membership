@@ -1,13 +1,10 @@
 <?php 
-
-	require_once("../config/config.php");
-	require_once("../includes/global.inc.php");
+	
+  require_once("includes/memberGlobal.inc.php");
 	require_once("includes/checkLogin.inc.php");
-	require_once("classes/memberTools.class.php");
-
-	$memberTools = new memberTools();
 
 	$member = unserialize($_SESSION['member']);
+  $content = NULL;
 
 	if (isset($_POST['updateDetailsSubmit'])) {
 
@@ -36,9 +33,10 @@
 
 	}
 
-	$heading = "Update Details";
-	$include = "includes/editDetails.inc.php";
-
-	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
+  $page->set("title","Update Details");
+  $page->set("heading","Update Details");
+  $page->addContent($content);
+  $page->addInclude("includes/editDetails.inc.php",array("member"=>$member));
+  $page->render("corePage.inc.php");
 
 ?>

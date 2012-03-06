@@ -5,14 +5,14 @@
     </tr>
 		<tr>
 			<th width='150'>Location</th>
-			<td><input type='text' name='location' value='<?php echo($member->getLocation()); ?>' /></td>
+			<td><input type='text' name='location' value='<?php echo($_member->getLocation()); ?>' /></td>
 		</tr>
     <tr> 
       <td class='spacer'></td>
     </tr>
 		<tr>
 			<th>Email</th>
-			<td><input type='text' name='email' value='<?php echo($member->getEmail()); ?>' /></td>
+			<td><input type='text' name='email' value='<?php echo($_member->getEmail()); ?>' /></td>
 		</tr>
 	  <tr> 
       <td class='spacer'></td>

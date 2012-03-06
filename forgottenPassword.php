@@ -1,8 +1,6 @@
 <?php 
 
-	require_once("../config/config.php");
-	require_once("../includes/global.inc.php");
-	require_once("classes/memberTools.class.php");
+	require_once("includes/memberGlobal.inc.php");
 	
 	$heading = "Forgotten Password";
 
@@ -16,6 +14,9 @@
 
 	}
 
-	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
+  $page->set("title","Forgotten Password");
+  $page->set("heading","Forgotten Password");
+  $page->addInclude($include);
+  $page->render("corePage.inc.php");
 
 ?>

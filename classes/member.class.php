@@ -1,6 +1,6 @@
 <?php
 
-  require_once ($GLOBALS['fullPath'] . '/classes/dbConn.class.php');
+  require_once (FULL_PATH.'/global/classes/dbConn.class.php');
 
   class member {
   

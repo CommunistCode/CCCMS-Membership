@@ -1,16 +1,12 @@
 <?php 
 
-	require_once("../config/config.php");
-	require_once("../includes/global.inc.php");
-	require_once("classes/memberTools.class.php");
-
-	$memberTools = new memberTools();
+	require_once("includes/memberGlobal.inc.php");
 
 	$memberTools->logout();
 
-	$heading = "Logout";
-	$content = "<p>You have been logged out!</p>";
-
-	require_once("themes/".$pageTools->getTheme("membership")."/templates/template.inc.php");
+  $page->set("title","Logout");
+  $page->set("heading","Logout");
+	$page->addContent( "<p>You have been logged out!</p>");
+  $page->render("corePage.inc.php");
 
 ?>
