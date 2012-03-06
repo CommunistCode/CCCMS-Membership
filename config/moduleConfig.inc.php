@@ -6,3 +6,5 @@
 
   $theme = $pageTools->getTheme(MODULE);
   DEFINE('THEME',$theme);
+
+?>
