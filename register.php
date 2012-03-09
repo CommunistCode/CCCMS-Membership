@@ -26,10 +26,28 @@
 		}
 
 		else {
+
+      if (!$checkUsername) {
+
+        $error = "There was an issue with your username selection!";
+
+      }
+
+      if (!$checkEmail) {
+
+        $error = "There was an issue with the email address you entered!";
+
+      }
+
+      if ($checkPassword != 0) {
+
+        $error = "Your passwords did not match!";
+
+      }
 		
 			//Registration details did not comply to rules 
 			$registration = 1;
-			$page->addContent("<p><strong>An error was found with your registration form!</strong><p>");
+			$page->addContent("<p><strong>An error was found with your registration form!</strong><br /><font color='red'>".$error."</font><p>");
 			$page->addInclude("includes/registrationForm.php");
 
 		}
